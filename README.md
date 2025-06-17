@@ -1,154 +1,58 @@
-# Unity-Animation-Collection
-# Repository for Animation Learning
+# Spine Pro Animation Learning Repository
 
-This repository is designed to help you learn and practice various animation techniques using different tools and methodologies. Below is an outline of what this repository will include:
-
----
-
-## 1. Sprite Animation
-
-### **1.1. Types of Sprites**
-#### **Sprite Picker**
-- Explanation: A sprite picker is a tool or component that allows the user to select and use specific sprites from a sprite sheet.
-- Implementation Example:
-  - Unity: Using the `SpriteRenderer` and slicing a sprite sheet in the Sprite Editor.
-  
-#### **Sprite Sheets**
-- Explanation: A single image containing multiple frames or sprites used for animation.
-- Tools:
-  - Unity's Sprite Editor.
-  - External tools like Photoshop or Aseprite for creating sprite sheets.
-
-#### **Single Sprites**
-- Explanation: Using individual image files for each frame of an animation.
-- Advantage: Easier to manage in small-scale projects.
+Đây là kho tài liệu hướng dẫn học tập và thực hành kỹ thuật hoạt hình 2D sử dụng **Spine Pro** và tích hợp vào Unity. Mục tiêu của kho là giúp bạn thành thạo Spine Pro và ứng dụng nó vào phát triển game.
 
 ---
 
-### **1.2. Animating Sprites**
-- **Frame-by-Frame Animation:**
-  - Example: Changing the displayed sprite at each frame in Unity using the `Animator` component or through scripts.
+## Nội dung chính
 
-- **Unity Animator Component:**
-  - Create an `Animation` clip.
-  - Drag and drop sprite frames into the timeline.
-
-- **Script-Based Animation:**
-```csharp
-public class SpriteAnimator : MonoBehaviour
-{
-    public Sprite[] sprites;
-    public float animationSpeed = 0.1f;
-    private SpriteRenderer spriteRenderer;
-    private int currentFrame;
-
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        InvokeRepeating("PlayAnimation", 0, animationSpeed);
-    }
-
-    void PlayAnimation()
-    {
-        currentFrame = (currentFrame + 1) % sprites.Length;
-        spriteRenderer.sprite = sprites[currentFrame];
-    }
-}
-```
+### **1. Giới thiệu về Spine Pro**
+- **Công cụ hoạt hình 2D:** Spine Pro là công cụ mạnh mẽ để tạo ra các hoạt hình mượt mà và phức tạp cho game.
+- **Cách cài đặt:**
+  - Tải về và cài đặt từ [trang web chính thức của Spine Pro](http://esotericsoftware.com/).
+  - Cài đặt Spine-Unity runtime để tích hợp với Unity.
 
 ---
 
-## 2. AnimationCurve
-
-### **2.1. Understanding AnimationCurve**
-- **Definition:** A tool for creating smooth animations over time, allowing custom control of how properties change.
-- **Applications:**
-  - Smooth transitions for movement, scaling, or rotation.
-  - Timing adjustments for effects like bouncing or easing.
-
-### **2.2. Using AnimationCurve in Unity**
-```csharp
-public class CurveAnimation : MonoBehaviour
-{
-    public AnimationCurve curve;
-    public float duration = 2.0f;
-    private Vector3 startPos;
-    private Vector3 endPos;
-    private float time;
-
-    void Start()
-    {
-        startPos = transform.position;
-        endPos = startPos + Vector3.up * 5;
-    }
-
-    void Update()
-    {
-        time += Time.deltaTime / duration;
-        float curveValue = curve.Evaluate(time);
-        transform.position = Vector3.Lerp(startPos, endPos, curveValue);
-        if (time > 1) time = 0; // Loop animation
-    }
-}
-```
-- **Tips:** Use Unity's built-in curve editor for precise control.
+### **2. Rigging và Weight Painting**
+- **Rigging (Cài đặt xương):** Thiết lập hệ thống xương và điều chỉnh cấu trúc cây (hierarchy) để tạo rigging.
+- **Weight Painting (Sơn trọng số):** Phân bổ trọng số cho các phần của sprite để xác định cách xương tác động đến chuyển động.
 
 ---
 
-## 3. Spine Pro Animation
-
-### **3.1. Setting Up Spine Pro**
-- Download and install Spine Pro from [Esoteric Software](http://esotericsoftware.com/).
-- Export animations to Unity using Spine's Unity runtime.
-
-### **3.2. Creating Animations in Spine Pro**
-- **Bones Setup:**
-  - Create a skeleton and attach bones to your sprite.
-- **Keyframe Animation:**
-  - Define keyframes for bone transformations (position, rotation, scale).
-- **Weight Painting:**
-  - Use weight painting to control how sprites deform.
-
-### **3.3. Importing Spine Animations into Unity**
-1. Install the Spine Unity package.
-2. Drag the `.json` or `.skel` file into Unity.
-3. Use the `SkeletonAnimation` component to control the animation.
-
-### **3.4. Spine Animation via Script**
-```csharp
-using Spine.Unity;
-
-public class SpineAnimationController : MonoBehaviour
-{
-    public SkeletonAnimation skeletonAnimation;
-    public string animationName;
-
-    void Start()
-    {
-        skeletonAnimation.state.SetAnimation(0, animationName, true);
-    }
-}
-```
+### **3. Tạo hoạt hình**
+- **Hoạt hình bằng keyframe:**
+  - Tạo chuyển động bằng cách thiết lập keyframe cho vị trí, xoay, và kích thước.
+- **Tùy chỉnh Skin:**
+  - Dễ dàng thay đổi ngoại hình nhân vật mà không cần sao chép hoạt hình.
+- **Thêm sự kiện (Events):**
+  - Đánh dấu các điểm trên timeline để kích hoạt hành động như hiệu ứng âm thanh hoặc va chạm trong game.
 
 ---
 
-### **Project Structure**
-```plaintext
-animation-repository/
-├── Sprites/
-│   ├── sprite-sheets/
-│   └── single-sprites/
-├── AnimationCurve/
-│   ├── Scripts/
-├── SpinePro/
-│   ├── SpineAssets/
-│   ├── UnityIntegration/
-└── README.md
-```
+### **4. Xuất và tích hợp vào Unity**
+- **Xuất hoạt hình:**
+  - Xuất Spine project dưới dạng file `.json` hoặc `.skel`.
+- **Tích hợp Unity:**
+  - Import Spine-Unity runtime vào Unity.
+  - Thêm thành phần `SkeletonAnimation` vào GameObject trong Unity.
+  - Chỉ định các hoạt hình đã xuất để sử dụng trong game.
 
-### **Resources**
-- [Unity Documentation](https://docs.unity3d.com/)
-- [Spine Pro Documentation](http://esotericsoftware.com/spine-in-unity)
-- [AnimationCurve Tutorials](https://learn.unity.com/)
+---
 
-Feel free to add examples and expand this repository as you learn!
+### **5. Kỹ thuật nâng cao**
+- **Trộn hoạt hình (Mixing Animations):**
+  - Kết hợp mượt mà giữa nhiều hoạt hình để tạo hiệu ứng chuyên nghiệp.
+- **Ràng buộc IK (Inverse Kinematics):**
+  - Sử dụng IK để tạo chuyển động tự nhiên hơn.
+- **Đồng bộ với hiệu ứng hạt (Particle Effects):**
+  - Kết hợp Spine animations với hệ thống hiệu ứng hạt trong Unity.
+
+---
+
+## Tài nguyên
+- [Tài liệu Spine Pro](http://esotericsoftware.com/spine-documentation)
+- [Tài liệu Spine-Unity](http://esotericsoftware.com/spine-unity)
+- [Hướng dẫn học Unity](https://unity.com/learn)
+
+Hãy tận hưởng quá trình học tập và tạo ra những hoạt hình đẹp mắt!
