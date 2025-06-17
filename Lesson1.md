@@ -52,18 +52,19 @@ Trong bài học này, chúng ta sẽ học cách tích hợp Spine Pro vào Uni
 ---
 
 ### **3. Demo chức năng**
+#### Click vào hình ảnh để mở video demo
+<a href="https://youtu.be/JZWKv9h0B4Q" target="_blank">
+  <img src="https://github.com/user-attachments/assets/03261715-e8fe-4e49-9514-415a0b5d1dd6" alt="Demo Video - Spine Animation" width="50%" />
+</a>
 
-Video [demo tại đây](./video/LS01.MP4) minh họa các tính năng:
-- **Nhấn phím 1**: Nhân vật thực hiện animation `portal` trước khi quay lại `idle`.
-- **Nhấn Enter**: Nhân vật thực hiện animation `shoot`.
-- **Nhấn Space**: Nhảy và chuyển trạng thái `jump`.
-- **Di chuyển**: Nhấn mũi tên trái/phải để chạy.
 
 ---
 
+### Source code 
+Xem source tại đây: [LS001-SimpleSpineController.cs](https://github.com/UnityToolkit/Unity-Animation-Collection/blob/main/LS001-SimpleSpineController.cs
 ## Yêu cầu
 
 1. Tải và cài đặt Spine-Unity runtime.
 2. Thiết lập nhân vật trong Unity với `SkeletonAnimation` và `Rigidbody2D`.
 
-Hãy xem video để hình dung rõ hơn về kết quả! 🎥
+Hãy nhấn vào hình ảnh để xem video chi tiết! 🎥
